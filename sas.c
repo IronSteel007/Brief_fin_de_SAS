@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-
-
 /****************************************struct account*****************************/
 struct account {
 	char id_card[10];
@@ -12,10 +10,8 @@ struct account {
 	float amount;
 };
 /***********************************************************************************/
-
-struct account c[1000];
+struct account Tab_C[1000];
 int nbraccount = 0;
-
 /*****************************************function Clean****************************/
 
 void cleanCls(){
@@ -25,23 +21,23 @@ void cleanCls(){
 
 /*************************************fonctions*************************************/
 
-/****************************struct account c[nbraccount]***************************/
+/****************************struct account Tab_Tab_C[nbraccount]***************************/
 bool addaccount(int n){
 
 	int i;
 
 	for (i = 0 ; i < n; i++){
 		printf("Enter The national ID : ");
-		scanf("%s", c[i].id_card);
+		scanf("%s", Tab_C[nbraccount].id_card);
 
 		printf("Enter The lastname : ");
-		scanf("%s", c[i].lastname);
+		scanf("%s", Tab_C[nbraccount].lastname);
 
 		printf("Enter The firstlastname : ");
-		scanf("%s", c[i].firstname);
+		scanf("%s", Tab_C[nbraccount].firstname);
 
 		printf("Enter The amount : ");
-		scanf("%f", &c[i].amount);
+		scanf("%f", &Tab_C[nbraccount].amount);
 		nbraccount++;
 	}
 	return true;
@@ -74,27 +70,27 @@ bool operations(){
 			case 1 :
 				cleanCls();
 					for(i = 0; i < nbraccount; i++) {
-						if (strcmp(id_card, c[i].id_card) == 0) {
+						if (strcmp(id_card, Tab_C[i].id_card) == 0) {
 							printf("Enter The operation amount to Deposit : ");
 							scanf("%f", &operationamount);
-							c[i].amount += operationamount;
+							Tab_C[i].amount += operationamount;
 
-							printf("Your New Amount is : %g MAD \n", c[i].amount);
+							printf("Your New Amount is : %g MAD \n", Tab_C[i].amount);
 						}
 					}
 				break;
 			case 2 :
 				cleanCls();
 				for(i = 0; i < nbraccount; i++) {
-						if (strcmp(id_card, c[i].id_card) == 0) {
+						if (strcmp(id_card, Tab_C[i].id_card) == 0) {
 							printf("Enter The operation amount to withdraw : ");
 							scanf("%f", &operationamount);
-							if (c[i].amount >= operationamount)
-								c[i].amount -= operationamount;
+							if (Tab_C[i].amount >= operationamount)
+								Tab_C[i].amount -= operationamount;
 							else
 								printf("Your balance is less than %g MAD \n", operationamount);
 
-							printf("Your amount is : %g MAD\n \n \n", c[i].amount);
+							printf("Your amount is : %g MAD\n \n \n", Tab_C[i].amount);
 						}
 					}
 				break;
@@ -132,20 +128,19 @@ void affichage() {
 						{
 						    for(j = 0 ; j < nbraccount-i-1 ; j++)
 						    {
-						        if(c[j].amount > c[j+1].amount)
+						        if(Tab_C[j].amount > Tab_C[j+1].amount)
 						        {
-						        	tempaccount = c[j+1];
-						            c[j+1]=c[j];
-						            c[j]=tempaccount;
+						        	tempaccount = Tab_C[j+1];
+						            Tab_C[j+1]=Tab_C[j];
+						            Tab_C[j]=tempaccount;
 						        }
 						    }
 						}
-
-/**************************************affichage********************************************************************/
 						for (i = 0 ; i < nbraccount ; i++) {
-							printf("%s \t %s \t %s \t %g \n", c[i].id_card, c[i].lastname, c[i].firstname, c[i].amount);
+							printf("%s \t %s \t %s \t %g \n", Tab_C[i].id_card, Tab_C[i].lastname, Tab_C[i].firstname, Tab_C[i].amount);
 						}
 						break;
+/**************************************************affichage********************************************************************/
 					case 2 :
 						printf("You have chosen the sort by ----> lastname ----> Descending Order \n");
                         struct account temp_account;
@@ -153,18 +148,18 @@ void affichage() {
 						{
 						    for(j = 0 ; j < nbraccount-i-1 ; j++)
 						    {
-						        if(c[j].amount < c[j+1].amount)
+						        if(Tab_C[j].amount < Tab_C[j+1].amount)
 						        {
-						        	temp_account = c[j+1];
-						            c[j+1]=c[j];
-						            c[j]=temp_account;
+						        	temp_account = Tab_C[j+1];
+						            Tab_C[j+1]=Tab_C[j];
+						            Tab_C[j]=temp_account;
 						        }
 						    }
 						}
 
 /**************************************affichage********************************************************************/
 						for (i = 0 ; i < nbraccount ; i++) {
-							printf("%s \t %s \t %s \t %g \n", c[i].id_card, c[i].lastname, c[i].firstname, c[i].amount);
+							printf("%s \t %s \t %s \t %g \n", Tab_C[i].id_card, Tab_C[i].lastname, Tab_C[i].firstname, Tab_C[i].amount);
 						}
 						break;
 				}
@@ -180,7 +175,7 @@ void affichage() {
 					printf("Entrer The id_card : ");
 					scanf("%s",id_card);
 					for(i = 0; i < nbraccount; i++) {
-						if (strcmp(id_card, c[i].id_card) == 0) {
+						if (strcmp(id_card, Tab_C[i].id_card) == 0) {
 							get_it=true;
 						}
 					}
